@@ -1,3 +1,6 @@
 [submodule "vo-vggt-long"]
 	path = vo-vggt-long
 	url = git@github.com:leilai125/vo-vggt-long.git
+[submodule "vo-horizonstream"]
+	path = vo-horizonstream
+	url = git@github.com:leilai125/vo-horizonstream.git
