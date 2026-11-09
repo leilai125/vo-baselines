@@ -1,22 +1,26 @@
 # Dataset order is execution order; each dataset finishes before the next.
 dataset_root: /data/lei/vo_benchmarks
 datasets:
-  Argoverse_2: Argoverse_2/ARGO_VO/10hz/stereo_front_left
-  KITTI_dataset: KITTI_dataset/dataset
+  # Argoverse_2: Argoverse_2/ARGO_VO/10hz/stereo_front_left
+  KITTI_dataset: /data/lei/DeepVO/KITTI_dataset/dataset
   euroc: euroc/undistorted
-  grandtour: grandtour/undistorted
   nuScenes_dataset: nuScenes_dataset/NUSC_12hz/CAM_FRONT
   tum_rgbd: tum_rgbd/undistorted
   waymo_v2: waymo_v2/undistorted
+  grandtour: grandtour/undistorted
 
 baseline_dir: vo-horizonstream
 baseline_config: vo-horizonstream/configs/horizonstream_infer.yaml
-# Install the baseline's documented environment and place the released file here.
-checkpoint: /home/lei/workspace/vo_baselines/vo-horizonstream/weights/HorizonStream.pt
+# Released checkpoint downloaded by scripts/download_weights.py.
+checkpoint: /home/lei/workspace/vo_baselines/vo-horizonstream/checkpoints/HorizonStream.pt
 python_executable: /home/lei/anaconda3/envs/horizonstream/bin/python
 image_subdir: image_2
 output_root: results/vo-horizonstream
 scratch_root: /tmp/vo-horizonstream
+# CUDA allocator policy for each scene worker. Without it, 518x392 inputs
+# (Argoverse) hit a fragmentation OOM on 48 GB GPUs; peak is ~39 GB with it.
+# Allocator-only setting: model numerics are unchanged.
+pytorch_cuda_alloc_conf: expandable_segments:True
 
 # Native window_size=10, sliding_size=21, model and image processing stay unchanged.
 # The runner uses online poses only, skips the separate loop-closure stage,

@@ -254,6 +254,7 @@ def load_settings(path):
         "scratch_root": absolute(config.get("scratch_root", "/tmp/vo-horizonstream")),
         "output_root": absolute(config.get("output_root", "results/vo-horizonstream")),
         "image_subdir": config.get("image_subdir", "image_2"),
+        "cuda_alloc_conf": config.get("pytorch_cuda_alloc_conf", "expandable_segments:True"),
         "datasets": {name: (Path(root) if Path(root).is_absolute() else data_root / root)
                      for name, root in config["datasets"].items()},
     }
@@ -354,6 +355,9 @@ def run_scene(scene, dataset_output, settings, device):
         env.update(CUDA_VISIBLE_DEVICES=str(device), PYTHONUNBUFFERED="1",
                    PYTHONDONTWRITEBYTECODE="1")
         env.setdefault("NUMBA_CACHE_DIR", str(settings["scratch_root"] / "numba-cache"))
+        # Allocator policy only; avoids fragmentation OOM without changing model numerics.
+        if settings["cuda_alloc_conf"]:
+            env["PYTORCH_CUDA_ALLOC_CONF"] = str(settings["cuda_alloc_conf"])
         process = None
         try:
             with log_path.open("w") as log:
