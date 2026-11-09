@@ -1,0 +1,22 @@
+# Dataset order here is the execution order. Each dataset finishes before the next.
+dataset_root: /data/lei/vo_benchmarks
+datasets:
+  Argoverse_2: Argoverse_2/ARGO_VO/10hz/stereo_front_left
+  KITTI_dataset: KITTI_dataset/dataset
+  euroc: euroc/undistorted
+  grandtour: grandtour/undistorted
+  nuScenes_dataset: nuScenes_dataset/NUSC_12hz/CAM_FRONT
+  tum_rgbd: tum_rgbd/undistorted
+  waymo_v2: waymo_v2/undistorted
+
+baseline_dir: vo-vggt-long
+baseline_config: vo-vggt-long/configs/base_config.yaml
+# Existing checkpoint; nothing is copied into the baseline submodule.
+checkpoint: /home/lei/workspace/VGGT-Long/weights/model.pt
+python_executable: /home/lei/anaconda3/envs/vggt-long/bin/python
+image_subdir: image_2
+output_root: results/vo-vggt-long
+scratch_root: /tmp/vo-vggt-long
+
+# The runner enforces Model.loop_enable=false. Other native model, preprocessing,
+# chunk-size/overlap and adjacent-chunk alignment settings are left unchanged.
