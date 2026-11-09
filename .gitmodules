@@ -4,3 +4,6 @@
 [submodule "vo-horizonstream"]
 	path = vo-horizonstream
 	url = git@github.com:leilai125/vo-horizonstream.git
+[submodule "vo-kilogs-slam"]
+	path = vo-kilogs-slam
+	url = git@github.com:leilai125/vo-kilogs-slam.git
