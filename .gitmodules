@@ -1,0 +1,3 @@
+[submodule "vo-vggt-long"]
+	path = vo-vggt-long
+	url = git@github.com:leilai125/vo-vggt-long.git
