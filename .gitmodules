@@ -7,3 +7,6 @@
 [submodule "vo-kilogs-slam"]
 	path = vo-kilogs-slam
 	url = git@github.com:leilai125/vo-kilogs-slam.git
+[submodule "calib-moge"]
+	path = calib-moge
+	url = git@github.com:leilai125/calib-moge.git
