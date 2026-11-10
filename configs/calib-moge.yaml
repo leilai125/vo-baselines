@@ -1,0 +1,29 @@
+# MoGe-2 metric depth + estimated camera intrinsics for the prepared VO datasets.
+# Dataset order is execution order; each dataset finishes before the next starts.
+# Outputs are written next to each prepared root's sequences/ folder:
+#   <root>/moge2/depth/<scene>/<frame>.png  uint16 PNG, depth in centimetres, 0 = invalid
+#   <root>/moge2/intrinsics/<scene>.txt     one "fx fy cx cy" row (pixels) per sorted frame
+dataset_root: /data/lei/vo_benchmarks
+datasets:
+  euroc: euroc/undistorted
+  grandtour: grandtour/undistorted
+  kitti: kitti
+  nuScenes_dataset: nuScenes_dataset/NUSC_12hz/CAM_FRONT
+  tum_rgbd: tum_rgbd/undistorted
+  waymo_v2: waymo_v2/undistorted
+  # Argoverse_2 is intentionally excluded.
+
+baseline_dir: calib-moge
+python_executable: /home/lei/anaconda3/envs/moge2/bin/python
+# Local copy of Hugging Face Ruicheng/moge-2-vitl-normal, the native `moge infer --version v2`
+# default. A Hugging Face repo ID also works (downloaded on first use).
+checkpoint: /home/lei/workspace/camera_calibration/models/huggingface/hub/models--Ruicheng--moge-2-vitl-normal/snapshots/cb0e8bbd6b1e243589717c78e750b1ba4c093acf/model.pt
+image_subdir: image_2
+output_subdir: moge2
+# Per-GPU worker logs and a per-dataset summary.json.
+log_root: results/calib-moge
+
+# Native `moge infer --version v2` defaults: intrinsics are estimated freely (no FoV prior),
+# resolution level 9 (3600 tokens for this checkpoint), full precision.
+resolution_level: 9
+fp16: false
