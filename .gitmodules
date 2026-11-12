@@ -10,3 +10,6 @@
 [submodule "calib-moge"]
 	path = calib-moge
 	url = git@github.com:leilai125/calib-moge.git
+[submodule "vo-vipe"]
+	path = vo-vipe
+	url = git@github.com:leilai125/vo-vipe.git
