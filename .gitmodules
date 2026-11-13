@@ -13,3 +13,6 @@
 [submodule "vo-vipe"]
 	path = vo-vipe
 	url = git@github.com:leilai125/vo-vipe.git
+[submodule "vo-lingbot-map"]
+	path = vo-lingbot-map
+	url = git@github.com:leilai125/vo-lingbot-map.git
